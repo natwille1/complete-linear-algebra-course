@@ -102,6 +102,21 @@ print(Ainv.flatten().shape)
 np.corrcoef(Ainv.flatten(), Ainv2.flatten())
 
 #%%
+# Implement Shermann-Morris inverse
+# A = I - ab.T
+# A^-1 = I + (ab.T / 1-a.T b)
+import numpy as np
+a = np.random.randn(5, 1)
+b = np.random.randn(5, 1)
+I = np.eye(5)
+
+A = I - a@b.T
+Ai = I + ((a@b.T) / (1-a.T@b))
+print(A.shape)
+print(Ai.shape)
+print(A@Ai)
+
+#%%
 # show that A.T A == R.T R (from QR)
 # generate random matrix A
 A = np.random.randn(3,3)
